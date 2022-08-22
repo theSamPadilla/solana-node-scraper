@@ -1,5 +1,5 @@
 # Solana Node Scraper
-**by [@theSamPadilla](https://twitter.com/thesampadilla)**
+by [@theSamPadilla](https://twitter.com/thesampadilla)
 ---
 # Overview
 This tool was built to analyze the infrastructure providers of all the nodes running on Solana and as an internal tool for our Google Cloud Digital Assets team to track our progress with the Solana community.
