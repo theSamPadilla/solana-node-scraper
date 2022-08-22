@@ -59,13 +59,13 @@ Check [contributing.md](contributing.md) and go at it. Feel free to fork and use
 
 **To Support:**
 - Check out the work we are doing at [Google Cloud Web3](https://cloud.google.com/web3). Reach out to our team if you have any questions.
-- Follow [@theSamPadilla](https://twitter.com/thesampadilla)**, the author of the scraper, on Twitter :) 
+- Follow [@theSamPadilla](https://twitter.com/thesampadilla), the author of the scraper, on Twitter :) 
 
 ---
 # Disclaimer & License
-This is not an officially supported Google product
+This is not an officially supported Google product.
 
-Apache Header
+Apache Header:
 ```
 Copyright 2022 Google LLC
 
