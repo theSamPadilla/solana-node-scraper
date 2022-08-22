@@ -1,5 +1,6 @@
 # Solana Node Scraper
-by [@theSamPadilla](https://twitter.com/thesampadilla)
+**by [@theSamPadilla](https://twitter.com/thesampadilla)**
+
 ---
 # Overview
 This tool was built to analyze the infrastructure providers of all the nodes running on Solana and as an internal tool for our Google Cloud Digital Assets team to track our progress with the Solana community.
@@ -11,6 +12,7 @@ The tool tracks the infrastructure providers defined in the ProvidersConfig.json
 Optionally, the tool also takes a list of infrastructure providers and outputs a full lsit of all the nodes running on them.
 
 This repo also contains a simple bash file to run the scraper and upload the files to a Google Cloud Storage Bucket. Crontask it and monitor the infrastructrue decentralization of Solana improve right in front of your eyes.
+
 ---
 # Requirements
 - [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
@@ -18,6 +20,7 @@ This repo also contains a simple bash file to run the scraper and upload the fil
 - Other dependencies in requirments.txt
 
 Run the script under the same relative directory structure of this repo.
+
 ---
 # Usage
 The scraper takes 4 optional parameters in the following format:
@@ -32,6 +35,7 @@ The scraper takes 4 optional parameters in the following format:
 - `--from.script` -> Sends the output files to upload/ for upload to GCS and silences runtime messages. Use recommended for bash scripts only.
 
 - `--help` -> Prints this message.
+
 ---
 # Config Files
 The scraper takes two files to be placed under "/config":
@@ -49,6 +53,7 @@ Added at the bottom of the script, these functions are not used by the tool, but
     Use it to get a sorted list of the all the ASNs descriptions for all the gosisp nodes in the network by how many times each appeared.
 2. `GetAsnDescriptionMap() -> asn:description`
     Use it to get the ASN number provider and its description for all the unique ASNs seen in the network.
+
 ---
 # Contributing and Supporting
 **To Contribute:**
