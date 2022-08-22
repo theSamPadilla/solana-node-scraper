@@ -1,8 +1,6 @@
 # Solana Node Scraper
-**by [@theSamPadilla](https://twitter.com/thesampadilla)**
 
----
-# Overview
+## Overview
 This tool was built to analyze the infrastructure providers of all the nodes running on Solana and as an internal tool for our Google Cloud Digital Assets team to track our progress with the Solana community.
 
 The tool tracks the infrastructure providers defined in the ProvidersConfig.json file and calculates metrics on:
@@ -14,7 +12,7 @@ Optionally, the tool also takes a list of infrastructure providers and outputs a
 This repo also contains a simple bash file to run the scraper and upload the files to a Google Cloud Storage Bucket. Crontask it and monitor the infrastructrue decentralization of Solana improve right in front of your eyes.
 
 ---
-# Requirements
+## Requirements
 - [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
 - [Python](https://www.python.org/downloads/)
 - Other dependencies in requirments.txt
@@ -22,7 +20,7 @@ This repo also contains a simple bash file to run the scraper and upload the fil
 Run the script under the same relative directory structure of this repo.
 
 ---
-# Usage
+## Usage
 The scraper takes 4 optional parameters in the following format:
 
 - `--exec.mode=[value]` -> Defines the execution method. Options are ("full" or "liveliness") Default is "full".
@@ -37,10 +35,10 @@ The scraper takes 4 optional parameters in the following format:
 - `--help` -> Prints this message.
 
 ---
-# Config Files
+## Config Files
 The scraper takes two files to be placed under "/config":
-1. SettingsConfig.json -> Defines the full path for the Solana CLI executable.
-2. ProvidersConfig.json -> Defines the providers to track according to the following format:
+1. **SettingsConfig.json** -> Defines the full path for the Solana CLI executable.
+2. **ProvidersConfig.json** -> Defines the providers to track according to the following format:
     - The keys are [ASN numbers](https://www.bgplookingglass.com/list-of-autonomous-system-numbers) for the providers you want to track.
     - The values have the provider name, description, website, and "short". The "short" key is used when passing providers along with the --providers flag.
 
@@ -50,18 +48,18 @@ The tool comes pre-loaded with the ASNs for the top 10 infrastructure providers 
 Added at the bottom of the script, these functions are not used by the tool, but serve as a reference to get more infomation on the network ASNs.
 
 1. `GetTopAsnDescriptions() -> description:count`
-    Use it to get a sorted list of the all the ASNs descriptions for all the gosisp nodes in the network by how many times each appeared.
+- Use it to get a sorted list of the all the ASNs descriptions for all the gosisp nodes in the network by how many times each appeared.
 2. `GetAsnDescriptionMap() -> asn:description`
-    Use it to get the ASN number provider and its description for all the unique ASNs seen in the network.
+- Use it to get the ASN number provider and its description for all the unique ASNs seen in the network.
 
 ---
-# Contributing and Supporting
+## Contributing and Supporting
 **To Contribute:**
 Check [contributing.md](contributing.md) and go at it. Feel free to fork and use for your own projects according to the Apache License too.
 
 **To Support:**
 - Check out the work we are doing at [Google Cloud Web3](https://cloud.google.com/web3). Reach out to our team if you have any questions.
-- Follow [Sam, the author of the scraper](https://twitter.com/thesampadilla), on Twitter :) 
+- Follow [@theSamPadilla](https://twitter.com/thesampadilla)**, the author of the scraper, on Twitter :) 
 
 ---
 # Disclaimer & License
