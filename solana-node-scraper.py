@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ############################################
-import sys, json, subprocess, requests
+import sys, json, subprocess, requests, os
 import pickle
-import os
+import ipwhois
 from datetime import date, datetime
 from ipwhois.net import Net #type: ignore
 from ipwhois.asn import IPASN #type: ignore
@@ -63,6 +63,10 @@ class SolanaCLI:
         data = {"jsonrpc":"2.0", "id":1, "method":"getClusterNodes"}
         result = requests.post(self.apiEndpoint, headers=self.requestHeader, json=data)
 
+        #Fail missed requests gracefully
+        if result.status_code != 200:
+            raise("\n\n[FATAL] Solana Gossip API Request Failed. Try again later")
+        
         #Optimize the result for faster lookups
         buff = result.json()['result'] 
         for node in buff:
@@ -126,6 +130,10 @@ class SolanaCLI:
         #Make call
         data = {"jsonrpc":"2.0","id":1, "method":"getEpochInfo"}
         result = requests.post(self.apiEndpoint, headers=self.requestHeader, json=data)
+
+        #Fail missed requests gracefully
+        if result.status_code != 200:
+            raise("\n\n[FATAL] Solana getEpochInfo API Request Failed. Try again later")
 
         #Return epoch
         self.epoch = result.json()['result']['epoch']
@@ -215,7 +223,7 @@ class Provider:
 
                 #Add LATEST stake & increment validator count if validator
                 if self.nodeDict[ip]['Is Validator']:
-                    pubkey = self.nodeDict['Pubkey']
+                    pubkey = self.nodeDict[ip]['Pubkey']
                     self.validatorCount += 1
                     self.cumulativeStake += (float(SOL_OBJ.validatorsLookup[pubkey]['activatedStake']) / 1000000000)
         
@@ -373,12 +381,18 @@ def GetNetworkProviderDistribution(providers_to_track: dict, short_to_object_map
     
     #Iterate over all gossipNodes
     for ip, node in SOL_OBJ.gossipLookup.items():
-        #Build Network objects and set variables
-        net = Net(ip)
-        obj = IPASN(net)
-        results = obj.lookup()
-        asn = results['asn']
-        
+        #Nest the Network object building in a try/except
+        try:
+            #Build Network objects and set variables
+            net = Net(ip)
+            obj = IPASN(net)
+            results = obj.lookup()
+            asn = results['asn']
+        except ipwhois.exceptions.IPDefinedError:
+            #Ignore this IP
+            print("\t[WARN] - IPDefinedError found for %s" % ip, flush=True)
+            continue
+
         #Set node information
         pubkey = node['pubkey']
         isValidator = pubkey in SOL_OBJ.validatorsLookup #if not validator, then RPC.
