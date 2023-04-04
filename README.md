@@ -1,4 +1,5 @@
 # Solana Node Scraper
+> An expanded and more complete version of thys anaylisis can be found at the [Blockchain Infra Decentralization Metrcis Project](https://github.com/theSamPadilla/blockchain-infra-decentralization-metrics)
 
 ## Overview
 This tool was built to analyze the infrastructure providers of all the nodes running on Solana and as an internal tool for our Google Cloud Digital Assets team to track our progress with the Solana community.
